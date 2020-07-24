@@ -1,0 +1,628 @@
+{
+	"info": {
+		"_postman_id": "2401430f-e35c-4a0a-a8a8-e3f77da316f4",
+		"name": "AAP - CANAL BBVA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "13000038-APX",
+			"item": [
+				{
+					"name": "13000038-APX",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dc661d4c-391e-420f-8bd8-cc77ad27fc6d",
+								"exec": [
+									"postman.setEnvironmentVariable(\"tsec\", responseHeaders.tsec);\r",
+									"\r",
+									"pm.test(\"Test status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n   \"authentication\": {\r\n       \"userID\": \"ZM13038\",\r\n       \"consumerID\": \"13000038\",\r\n       \"authenticationType\": \"04\",\r\n       \"authenticationData\": [\r\n           {\r\n               \"idAuthenticationData\": \"password\",\r\n               \"authenticationData\": [\r\n                   \"ODQ2MTkzMzY5ZDA4\"\r\n               ]\r\n           }\r\n       ]\r\n   },\r\n   \"backendUserRequest\": {\r\n       \"userId\": \"\",\r\n       \"accessCode\": \"\",\r\n       \"dialogId\": \"\"\r\n   }\r\n}"
+						},
+						"url": {
+							"raw": "{{urlGt}}:{{portGt}}/TechArchitecture/pe/grantingTicket/V02",
+							"host": [
+								"{{urlGt}}"
+							],
+							"port": "{{portGt}}",
+							"path": [
+								"TechArchitecture",
+								"pe",
+								"grantingTicket",
+								"V02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMCPE1710111",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a0a0d3fd-1ad1-4dfe-90c8-b6c25e6c921b",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"\r",
+									"mainTest ();\r",
+									"\r",
+									"if (iterationData && iterationData.length > 0) {    \r",
+									"     postman.setNextRequest(\"SMCPE1710111\");\r",
+									"} else {        \r",
+									"     pm.environment.unset(\"customer-id\");\r",
+									"     pm.environment.unset(\"unmasked\");\r",
+									"     pm.environment.unset(\"expectedStatus\");    \r",
+									"     pm.environment.unset(\"iterationData\");\r",
+									"     postman.setNextRequest(null); \r",
+									"}\r",
+									"\r",
+									"function mainTest (){\r",
+									"\r",
+									"  var codeResponse = pm.response.code;\r",
+									"\r",
+									"  pm.test(\"Test status code is \" +  pm.environment.get(\"expectedStatus\") , function () {\r",
+									"     pm.expect(pm.environment.get(\"expectedStatus\")).to.eql(codeResponse);\r",
+									"\r",
+									"  });\r",
+									"\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95379bf2-97de-4852-88ba-49eb4f54e21e",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"\r",
+									"if (!iterationData) {\r",
+									"    iterationData = data[\"SMCPE1710111\"];\r",
+									"}\r",
+									"\r",
+									"var currentData = iterationData.shift();\r",
+									"\r",
+									"if(currentData){\r",
+									"  pm.environment.set(\"customer-id\",    currentData[\"customer-id\"]);\r",
+									"  pm.environment.set(\"unmasked\",       currentData[\"unmasked\"]);\r",
+									"  pm.environment.set(\"expectedStatus\", currentData[\"expectedStatus\"]);\r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"iterationData\", iterationData);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "tsec",
+								"type": "text",
+								"value": "{{tsec}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{urlSm}}:{{portSm}}/customers/v0/customers/{{customer-id}}/contact-details",
+							"host": [
+								"{{urlSm}}"
+							],
+							"port": "{{portSm}}",
+							"path": [
+								"customers",
+								"v0",
+								"customers",
+								"{{customer-id}}",
+								"contact-details"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMCPE1810286",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a5ee1f-98b9-4106-b441-966832cd6da6",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"\r",
+									"mainTest ();\r",
+									"\r",
+									"if (iterationData && iterationData.length > 0) {    \r",
+									"     postman.setNextRequest(\"SMCPE1810286\");\r",
+									"} else {     \r",
+									"     pm.environment.unset(\"product.number\");\r",
+									"     pm.environment.unset(\"expectedIsBBVA\");   \r",
+									"     pm.environment.unset(\"iterationData\");\r",
+									"     postman.setNextRequest(null); \r",
+									"}\r",
+									"\r",
+									"function mainTest (){\r",
+									"\r",
+									" const response = pm.response.json();\r",
+									" let consumerrequestid = pm.response.headers.get(\"consumerrequestid\");\r",
+									" console.log(consumerrequestid,\" Consumerrequestid\");\r",
+									"\r",
+									"\r",
+									" pm.test(\"Test product BBVA is \"+ pm.environment.get(\"expectedIsBBVA\"), function () {\r",
+									"    pm.expect(pm.environment.get(\"expectedIsBBVA\")).to.eql(response.data[0].product.isBBVA);\r",
+									" });\r",
+									"\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "33a32625-732f-4653-9f3c-68df4bee4ed9",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"\r",
+									"if (!iterationData) {\r",
+									"    iterationData = data[\"SMCPE1810286\"];\r",
+									"}\r",
+									"\r",
+									"var currentData = iterationData.shift();\r",
+									"\r",
+									"if(currentData){\r",
+									"  pm.environment.set(\"product.number\", currentData[\"product.number\"]);\r",
+									"  pm.environment.set(\"expectedIsBBVA\", currentData[\"expectedIsBBVA\"]); \r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"iterationData\", iterationData);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Tsec",
+								"type": "text",
+								"value": "{{tsec}}"
+							}
+						],
+						"url": {
+							"raw": "{{urlSm}}:{{portSm}}/receivers/v1/receivers?product.number={{product.number}}",
+							"host": [
+								"{{urlSm}}"
+							],
+							"port": "{{portSm}}",
+							"path": [
+								"receivers",
+								"v1",
+								"receivers"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "product.number",
+									"value": "{{product.number}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "13000051-DIGIBIOMETRICOT",
+			"item": [
+				{
+					"name": "13000051-DIGIBIOMETRICOT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71d023eb-44a3-4fdf-953b-5b727a5d0fa8",
+								"exec": [
+									"postman.setEnvironmentVariable(\"tsec\", responseHeaders.tsec);\r",
+									"\r",
+									"pm.test(\"Test status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"authentication\":{\r\n\"userID\":\"ZM13051\",\r\n\"consumerID\":\"13000051\",\r\n\"authenticationType\":\"61\",\r\n\"authenticationData\":[]\r\n},\r\n\"backendUserRequest\":{\r\n\"userId\":\"\",\r\n\"accessCode\":\"\",\r\n\"dialogId\":\"\"\r\n}\r\n}"
+						},
+						"url": {
+							"raw": "{{urlGt}}:{{portGt}}/TechArchitecture/pe/grantingTicket/V02",
+							"host": [
+								"{{urlGt}}"
+							],
+							"port": "{{portGt}}",
+							"path": [
+								"TechArchitecture",
+								"pe",
+								"grantingTicket",
+								"V02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMCPE1820350",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "825eb281-71fa-4688-b30f-9fed03b82d61",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"mainTest ();\r",
+									"\r",
+									"if (iterationData && iterationData.length > 0) {   \r",
+									"     postman.setNextRequest(\"SMCPE1820350\");\r",
+									"     mainFlow ();\r",
+									"} else {        \r",
+									"     pm.environment.unset(\"BCS-Device-App-Name\");   \r",
+									"     pm.environment.unset(\"expectedStatus\");    \r",
+									"     pm.environment.unset(\"workflow\");  \r",
+									"     pm.environment.unset(\"iterationData\");\r",
+									"     postman.setNextRequest(null); \r",
+									"}\r",
+									"\r",
+									"function mainTest (){\r",
+									"\r",
+									"  var codeResponse = pm.response.code;\r",
+									"\r",
+									"  pm.test(\"Test status code is \" +  pm.environment.get(\"expectedStatus\") , function () {\r",
+									"     pm.expect(codeResponse).to.eql(pm.environment.get(\"expectedStatus\"));\r",
+									"\r",
+									"  });\r",
+									"\r",
+									"}\r",
+									"\r",
+									"function mainFlow (){\r",
+									"\r",
+									"     if(pm.environment.get(\"workflow\")){\r",
+									"          console.log(response);\r",
+									"          pm.environment.unset(\"BCS-Device-App-Name\");   \r",
+									"          pm.environment.unset(\"expectedStatus\");    \r",
+									"          pm.environment.unset(\"workflow\");  \r",
+									"          pm.environment.unset(\"iterationData\");\r",
+									"          pm.environment.set(\"processId\", response.data.params[5].value);\r",
+									"          postman.setNextRequest(\"SMCPE1820351\"); \r",
+									"     }\r",
+									"\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "daf33c0d-d10f-455b-ba09-6fdfc9ca155c",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"\r",
+									"if (!iterationData) {\r",
+									"    iterationData = data[\"SMCPE1820350\"];\r",
+									"}\r",
+									"\r",
+									"var currentData = iterationData.shift();\r",
+									"\r",
+									"if(currentData){\r",
+									"  pm.environment.set(\"BCS-Device-App-Name\",    currentData[\"BCS-Device-App-Name\"]);\r",
+									"  pm.environment.set(\"expectedStatus\", currentData[\"expectedStatus\"]);\r",
+									"  pm.environment.set(\"workflow\", currentData[\"workflow\"]);  \r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"iterationData\", iterationData);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "tsec",
+								"type": "text",
+								"value": "{{tsec}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Forwarded-For",
+								"type": "text",
+								"value": "00-1B-63-84-45-E6"
+							},
+							{
+								"key": "BCS-Device-App-Name",
+								"type": "text",
+								"value": "{{BCS-Device-App-Name}}"
+							},
+							{
+								"key": "Third-Party-Application-Id",
+								"type": "text",
+								"value": "4"
+							},
+							{
+								"key": "usuarioAplicacion",
+								"value": "P028088",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "canal",
+								"value": "3",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"application\":{\t\r\n\t\"user\":\"P857488\"\r\n},\t\r\n\"bank\":{\t\r\n\t\"id\":\"0130\",\t\r\n\t\"branch\":{\r\n\t\t\"id\":\"0130\"\r\n\t}\r\n},\r\n\"operationType\":\"57\",\t\r\n\"params\": [\r\n{\r\n\t\"name\":\"DB_RUC\",\r\n\t\"value\":\"20549013644\"\r\n},\r\n{\r\n\t\"name\":\"DB_PART_NUMBER\",\r\n\t\"value\":\"251946695\"\r\n},\r\n{\r\n\t\"name\":\"DB_SERIAL_NUMBER\",\r\n\t\"value\":\"1902S002081\"\r\n},\r\n{\r\n\t\"name\":\"DB_MODEL_NAME\",\r\n\t\"value\":\"SAGEM MORPHOSMART MSO300\"\r\n},\r\n{\r\n\t\"name\":\"SECURITY_KEY\",\r\n\t\"value\":\"lAFwQRmyN7wSGQAqigaiCDT5CDSvJPj+dhgC\"\r\n},\r\n{\r\n\t\"name\":\"BIO_DEVICE_ID\",\r\n\t\"value\":\"jsiwosksi7wSG2U3HDJehr75CDSvJPjdhgC\"\r\n},\r\n{\r\n\t\"name\":\"DEVICE_ID\",\r\n\t\"value\":\"lAFwQRmyN7wSG2U3HDJehr75CDSvJPjdhgC\"\r\n}\r\n]\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{urlSm}}:{{portSm}}/fingerprint-management/v0/fingerprints/initialize",
+							"host": [
+								"{{urlSm}}"
+							],
+							"port": "{{portSm}}",
+							"path": [
+								"fingerprint-management",
+								"v0",
+								"fingerprints",
+								"initialize"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMCPE1820351",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b6af5958-ec84-4a16-9469-6552a8f87527",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"\r",
+									"if (!iterationData) {\r",
+									"    iterationData = data[\"SMCPE1820351\"];\r",
+									"}\r",
+									"\r",
+									"var currentData = iterationData.shift();\r",
+									"\r",
+									"if(currentData){\r",
+									"  pm.environment.set(\"BCS-Device-App-Name\",    currentData[\"BCS-Device-App-Name\"]);\r",
+									"  pm.environment.set(\"expectedStatus\", currentData[\"expectedStatus\"]);\r",
+									"  pm.environment.set(\"workflow\", currentData[\"workflow\"]);  \r",
+									"\r",
+									"  var processId = currentData[\"processId\"];\r",
+									"\r",
+									"  if(processId == \"OK\"){\r",
+									"\r",
+									"    processId = '\\\"' + pm.environment.get(\"processId\") + '\\\"';\r",
+									"    console.log(processId, \"CASO 1\");\r",
+									"    pm.environment.set(\"processId\", processId);\r",
+									"\r",
+									"  }else{\r",
+									"      if(processId != null){\r",
+									"        console.log(processId,\"CASO 2\");\r",
+									"        processId = '\\\"' + processId + '\\\"';\r",
+									"        pm.environment.set(\"processId\", processId);\r",
+									"      }else{\r",
+									"        console.log(processId,\"CASO 3\");\r",
+									"        pm.environment.set(\"processId\", processId);\r",
+									"      }\r",
+									"  }\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.environment.set(\"iterationData\", iterationData);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2310cab4-03ff-4620-8771-8f64f426da60",
+								"exec": [
+									"var iterationData =  pm.environment.get(\"iterationData\");\r",
+									"\r",
+									"mainTest ();\r",
+									"\r",
+									"if (iterationData && iterationData.length > 0) {    \r",
+									"     postman.setNextRequest(\"SMCPE1820351\");\r",
+									"} else {        \r",
+									"     pm.environment.unset(\"BCS-Device-App-Name\");   \r",
+									"     pm.environment.unset(\"expectedStatus\");  \r",
+									"     pm.environment.unset(\"workflow\");  \r",
+									"     pm.environment.unset(\"iterationData\");\r",
+									"     postman.setNextRequest(null); \r",
+									"}\r",
+									"\r",
+									"function mainTest (){\r",
+									"\r",
+									"  var codeResponse = pm.response.code;\r",
+									"\r",
+									"  pm.test(\"Test status code is \" +  pm.environment.get(\"expectedStatus\") , function () {\r",
+									"     pm.expect(codeResponse).to.eql(pm.environment.get(\"expectedStatus\"));\r",
+									"\r",
+									"  });\r",
+									"\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "tsec",
+								"value": "{{tsec}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Forwarded-For",
+								"value": "00-1B-63-84-45-E6",
+								"type": "text"
+							},
+							{
+								"key": "BCS-Device-App-Name",
+								"value": "{{BCS-Device-App-Name}}",
+								"type": "text"
+							},
+							{
+								"key": "Third-Party-Application-Id",
+								"value": "4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"parentTransactionId\":\"1212\",\t\r\n\"transactionId\":\"1313\",\r\n\"processId\": {{processId}},\r\n\"application\":{\t\r\n\t\"user\":\"P857488\"\r\n\t},\t\r\n\"bank\":{\t\r\n\t\"id\":\"0130\",\t\r\n\t\"branch\":{\t\r\n\t\t\"id\":\"0130\"\r\n   }\r\n},\t\r\n\"operationType\":\"57\",\t\r\n\"user\":{\t\r\n\t\"identityDocument\":{\t\r\n\t\t\"documentNumber\":\"09592807\",\t\r\n\t\t\"documentType\": {\t\r\n\t\t\t\t\"id\":\"DNI\"\r\n\t\t\t\t}\r\n\t}\r\n},\t\r\n\"authorizedUser\": {\r\n\t\"id\":null\r\n\t},\r\n\"fingerprints\":[\r\n\t{\r\n\t\r\n\t\"fingerprintFormat\":\"WSQ\"\t\r\n\r\n}\r\n]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{urlSm}}:{{portSm}}/fingerprint-management/v0/fingerprints/search",
+							"host": [
+								"{{urlSm}}"
+							],
+							"port": "{{portSm}}",
+							"path": [
+								"fingerprint-management",
+								"v0",
+								"fingerprints",
+								"search"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,36 @@
+[
+   {
+      "SMCPE1710111":[
+         {
+            "customer-id":"97164691",
+            "unmasked":false,
+            "expectedStatus":200,
+			"workflow":false
+         },
+         {
+            "customer-id":"971646",
+            "unmasked":false,
+            "expectedStatus":409,
+			"workflow":false
+         },
+         {
+            "customer-id":"9716469344",
+            "unmasked":true,
+            "expectedStatus":400,
+			"workflow":false
+         }
+      ],
+      "SMCPE1810286":[
+         {
+            "product.number":"001101300159449820",
+            "expectedIsBBVA":true,
+			"workflow":false
+         },
+         {
+            "product.number":"001101300159449824",
+            "expectedIsBBVA":false,
+			"workflow":false
+         }
+      ]
+   }
+]
